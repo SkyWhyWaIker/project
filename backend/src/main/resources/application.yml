@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: personal-finance
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/personal_finance}
+    username: ${POSTGRES_USER:finance}
+    password: ${POSTGRES_PASSWORD}
+  flyway:
+    enabled: true
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+app:
+  time-zone: Europe/Moscow
+  jwt:
+    secret: ${JWT_SECRET}
+    issuer: personal-finance
+    lifetime: PT1H
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
